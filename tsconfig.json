@@ -1,0 +1,13 @@
+{
+  "extends": "./.wxt/tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "@config": ["app.config.ts"],
+      "@manifest": ["app.manifest.ts"],
+      "@assets": ["assets/*"],
+    },
+    "jsx": "react-jsx"
+  }
+}

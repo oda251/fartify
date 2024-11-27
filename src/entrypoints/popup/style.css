@@ -1,0 +1,143 @@
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  --color: rgba(255, 255, 255, 0.87);
+  color: var(--color);
+  --bg-color: #242424;
+  --fart-color: #836b0c;
+  background-color: var(--bg-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 300px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+  border-radius: 100px;
+  transition: all 1s ease-in;
+  &:hover {
+    text-shadow: var(--fart-color) 0 0 100px;
+  }
+}
+
+button {
+  border-radius: 8px;
+  width: 4rem;
+  border: 1px solid transparent;
+  padding: 0.6em 0.8em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--bg-color);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  transition: background-color 0.25s;
+  margin-right: 0.1rem;
+  margin-left: 0.1rem;
+  transition: border-color 0.25s ease, transform 0.2s;
+  &:hover {
+    transform: scale(1.1);
+    transition: transform 0.1s;
+  }
+  &:active {
+    transform: scale(1);
+  }
+}
+button:hover {
+  border-color: #646cff;
+}
+button.active {
+  background-color: green;
+}
+button.disabled {
+  background-color: maroon;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+}
+
+select {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: var(--bg-color);
+  cursor: pointer;
+  transition: border-color 0.25s;
+  transition: background-color 0.25s;
+  margin-right: 0.1rem;
+  margin-left: 0.1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 2px;
+  transition: border-color 0.25s ease;
+}
+select:hover {
+  border-color: #646cff;
+}
+select:focus {
+  outline: none;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  position: relative;
+}
+.sound-selector {
+  display: flex;
+  width: 14rem;
+  height: 3.2em;
+  align-items: center;
+  select {
+    width: 14rem;
+    padding-left: 2.8em;
+  }
+  .play-icon {
+    height: 1em;
+    width: 1em;
+    margin: 0.6em 1.0em;
+    border-radius: 50%;
+    display: flex;
+    text-align: center;
+    position: absolute;
+    overflow: visible;
+    transition: all 0.2s ease-out;
+    &:hover {
+      transform: scale(1.5);
+      color: green;
+      background-color: var(--color);
+      box-shadow: 0 0 5px 0 green;
+      transition: all 0.1s ease-in;
+    }
+    &:active {
+      transform: scale(1.2);
+    }
+  }
+}
+.mode-selector {
+  width: 7rem;
+  margin-right: 1rem;
+}
