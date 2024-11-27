@@ -1,6 +1,6 @@
 # Fartify
 ## Overview
-Chrome extention to focus on reading, hiding parts of article you aren'n reading.
+Chrome extention to fart. This program add fart effect to your browser.
 ## Sound from
 https://onara-mp3.com/
 ## Build
@@ -11,6 +11,8 @@ https://onara-mp3.com/
 1. Background
     - Manages configuration data through `chrome.runtime`.
 2. Content
-    - Appends and manages blinds on the active tab.
+    - Add event listeners to document.
 3. Popup
     - Provides a user interface for configuration.
+4. Utils
+    - Including main logic of fart.
