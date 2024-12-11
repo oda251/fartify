@@ -32,10 +32,14 @@ const ActivateButton: React.FC = () => {
         else fart(e, 1);
       }
       chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-        chrome.tabs.sendMessage(tabs[0].id as number, {
-          type: AppMessageTypes.update.SET,
-          value: newValue,
-        });
+        chrome.tabs
+          .sendMessage(tabs[0].id as number, {
+            type: AppMessageTypes.update.SET,
+            value: newValue,
+          })
+          .catch((e) => {
+            console.error(e);
+          });
       });
     });
   // render

@@ -12,7 +12,7 @@ class Api<T> implements IRepository<T> {
     return new Promise<T>((resolve, reject) => {
       chrome.runtime.sendMessage({ type: this.type_.GET }, (response) => {
         if (chrome.runtime.lastError) {
-          reject(chrome.runtime.lastError);
+          console.error(chrome.runtime.lastError);
         } else {
           resolve(response);
         }
@@ -20,10 +20,14 @@ class Api<T> implements IRepository<T> {
     });
   };
   set = async (value: T) => {
-    const result = await chrome.runtime.sendMessage({
-      type: this.type_.SET,
-      value,
-    });
+    const result = await chrome.runtime
+      .sendMessage({
+        type: this.type_.SET,
+        value,
+      })
+      .catch((e) => {
+        console.error(e);
+      });
     return result;
   };
 }

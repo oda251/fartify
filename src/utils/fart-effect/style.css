@@ -1,33 +1,53 @@
-.fart-container {
+@keyframes effect-fragment {
+  0% {
+    transform: scale(0);
+    box-shadow: 0 0 var(--blur) var(--sub-color);
+  }
+  2% {
+    transform: scale(1);
+  }
+  100% {
+    transform: translate(calc(cos(var(--angle)) * 10rem), calc(sin(var(--angle)) * 10rem)) scale(10);
+    box-shadow: 0 0 calc(var(--blur) * 5) var(--sub-color);
+  }
+}
+@keyframes effect-container {
+  0% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes moveout {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(calc(cos(var(--angle)) * var(--distance)), calc(sin(var(--angle)) * var(--distance)));
+  }
+}
+.click-effect-container {
+  height: 0;
+  width: 0;
   position: absolute;
+  z-index: 10000;
   pointer-events: none;
   overflow: visible;
-  animation: fadeout 5s forwards;
-  --fart-color: yellow;
-  z-index: 10000;
-  .fart-effect {
-    position: absolute;
-    pointer-events: none;
-    animation: shlink 5s forwards;
-  }
+  --color: rgb(143, 98, 0);
+  --sub-color: rgb(195, 255, 0);
+  animation: effect-container var(--pre-timespan) var(--after-timespan), moveout calc(var(--pre-timespan) + var(--after-timespan));
+  animation-fill-mode: forwards;
 }
-@keyframes fadeout {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes shlink {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(0.3);
-    opacity: 0;
-  }
+.click-effect-fragment {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  --distance: ;
+  animation: effect-fragment var(--pre-timespan) ease-out;
+  animation-fill-mode: forwards;
+  background-color: var(--color);
+  filter: blur(var(--blur));
 }
 
 .fart-stain {

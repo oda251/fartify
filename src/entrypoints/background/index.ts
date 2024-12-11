@@ -46,13 +46,18 @@ const setter = async (message: any, sender: chrome.runtime.MessageSender) => {
   }
 };
 
+async function initCache() {
+  const initialConfig = await AppStorage.config.get();
+  AppCache.config.set(initialConfig);
+  const list: Path[] = await AppStorage.allSounds.get();
+  list.sort((a, b) => a.name.localeCompare(b.name));
+  AppCache.allSounds.set(list);
+}
+
+initCache();
+
 export default defineBackground({
-  main: async () => {
-    const initialConfig = await AppStorage.config.get();
-    AppCache.config.set(initialConfig);
-    const list: Path[] = await AppStorage.allSounds.get();
-    list.sort((a, b) => a.name.localeCompare(b.name));
-    AppCache.allSounds.set(list);
+  main() {
     chrome.runtime.onMessage.addListener(
       async (message, sender, sendResponse) => {
         if (messageIsForThisApp(message.type)) {
@@ -67,10 +72,14 @@ export default defineBackground({
     );
     chrome.tabs.onActivated.addListener((activeInfo) => {
       const tabId = activeInfo.tabId;
-      chrome.tabs.sendMessage(tabId, {
-        type: messageType.update.SET,
-        value: AppCache.isActivated.get(),
-      });
+      chrome.tabs
+        .sendMessage(tabId, {
+          type: messageType.update.SET,
+          value: AppCache.isActivated.get(),
+        })
+        .catch((e) => {
+          console.log(e);
+        });
     });
   },
 });

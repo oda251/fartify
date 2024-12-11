@@ -8,7 +8,7 @@ const calcOpacity = (depth: number) => {
   return opacity < 0 ? 0 : opacity > maxOpacity ? maxOpacity : opacity;
 };
 
-export const stainWindow = () => {
+export const stainWindow = (count?: number) => {
   const stains = Array.from(
     document.querySelectorAll<HTMLElement>(".fart-stain")
   );
@@ -19,7 +19,11 @@ export const stainWindow = () => {
     stain.style.backgroundColor = Config.stainColor.default;
     document.body.appendChild(stain);
   } else {
-    depth++;
+    if (count) {
+      depth += count;
+    } else {
+      depth++;
+    }
     stains.forEach((stain) => {
       stain.style.opacity = calcOpacity(depth).toString();
     });

@@ -39,16 +39,23 @@ const fart = async (
     probability = probability! - Math.floor(probability!);
   }
   const pos = getRelativeMousePosition(event);
+  let count = 0;
   for (let i = 0; i < times; i++) {
     if (Math.random() > probability!) {
       return;
     }
-    stainWindow();
-    const uri = chrome.runtime.getURL(await AppApi.sound.get());
-    const audio = new Audio(uri);
-    audio.play();
-    visualEffect(pos);
-    await sleep(Math.random() * 60 + 40);
+    count++;
+  }
+  if (count > 0) {
+    const p = visualEffect(pos, count);
+    for (let i = 0; i < count; i++) {
+      const uri = chrome.runtime.getURL(await AppApi.sound.get());
+      const audio = new Audio(uri);
+      audio.play();
+      await sleep(Math.random() * 60 + 40);
+    }
+    stainWindow(count);
+    await p;
   }
 };
 

@@ -30,9 +30,7 @@ export class MEPByTime implements MultipleExecutionPreventer {
   }
   exec = async <T extends Event>(callback: (e?: T) => Promise<void>, e?: T) => {
     const now = Date.now();
-    console.log(`this: ${this}`);
     if (now - this.lastExecutedAt < this.interval) return;
-    console.log(`now: ${now}, lastExecutedAt: ${this.lastExecutedAt}`);
     this.lastExecutedAt = now;
     await callback(e);
   };
